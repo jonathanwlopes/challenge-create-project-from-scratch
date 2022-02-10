@@ -5,8 +5,8 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { useState } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import { getPrismicClient } from '../services/prismic';
-import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 import Header from '../components/Header';
 
@@ -43,18 +43,46 @@ export default function Home({ postsPagination }: HomeProps) {
     };
   });
 
-  const [posts] = useState<Post[]>(formattedPost);
+  const [posts, setPosts] = useState<Post[]>(formattedPost);
 
   const [isPagination, setIsPagination] = useState<PostPagination['next_page']>(
     postsPagination.next_page
   );
 
   const handlePagination = () => {
-    setIsPagination('2');
+    const fetchData = async () => {
+      await fetch(postsPagination.next_page)
+        .then(response => response.json())
+        .then(data => {
+          if (data.next_page === null) {
+            setIsPagination(null);
+          }
+
+          const formattedPost2 = data.results.map(post => {
+            return {
+              ...post,
+              first_publication_date: format(
+                new Date(post.first_publication_date),
+                'dd MMM yyyy',
+                {
+                  locale: ptBR,
+                }
+              ),
+            };
+          });
+
+          setPosts([...posts, ...formattedPost2]);
+        });
+    };
+
+    fetchData();
   };
 
   return (
     <>
+      <Head>
+        <title>Home | spacetraveling</title>
+      </Head>
       <main className={styles.container}>
         <div className={styles.headerContainer}>
           <Header />
