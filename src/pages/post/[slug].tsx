@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { getPrismicClient } from '../../services/prismic';
 import Header from '../../components/Header';
-import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
 
 interface Post {
@@ -47,8 +46,6 @@ export default function Post({ post }: PostProps) {
   };
 
   const [dataPost] = useState(formattedPost);
-
-  console.log(dataPost);
 
   const router = useRouter();
   if (router.isFallback) {
