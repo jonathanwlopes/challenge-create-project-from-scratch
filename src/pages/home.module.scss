@@ -2,49 +2,80 @@
   max-width: 700px;
   margin: 0 auto;
   padding: 80px 0;
-}
+  display: flex;
+  flex-direction: column;
 
-.postContainer:not(:first-child) {
-  margin-top: 48px;
-}
-
-.postContainer {
-  .postTitle {
-    color: var(--heading);
-    text-align: justify;
-    letter-spacing: -0.5px;
-    font-weight: 700;
-    font-size: 1.75rem;
-    line-height: 2.125rem;
+  .headerContainer {
+    margin-bottom: 65px;
   }
 
-  .postSubTitle {
-    color: var(--body);
-    text-align: justify;
+  .postLink {
+    all: unset;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .postLink:not(:first-of-type) {
+    margin-top: 48px;
+  }
+
+  .postContainer {
+    .postTitle {
+      color: var(--heading);
+      text-align: justify;
+      letter-spacing: -0.5px;
+      font-weight: 700;
+      font-size: 1.75rem;
+      line-height: 2.125rem;
+    }
+
+    .postSubTitle {
+      color: var(--body);
+      text-align: justify;
+      font-size: 1.125rem;
+      line-height: 1.375rem;
+      margin-top: 8px;
+    }
+
+    .rowWrapper {
+      display: flex;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .infoWrapper:not(:first-child) {
+      margin-left: 24px;
+    }
+
+    .infoWrapper {
+      display: flex;
+      align-items: center;
+
+      .infoWrapperData {
+        margin-left: 8px;
+        color: var(--info);
+        font-size: 0.875rem;
+        line-height: 1.063rem;
+        text-transform: uppercase;
+      }
+
+      .infoWrapperText {
+        margin-left: 8px;
+        color: var(--info);
+        font-size: 0.875rem;
+        line-height: 1.063rem;
+      }
+    }
+  }
+
+  .buttonPagination {
+    all: unset;
+    cursor: pointer;
+    color: var(--highlight);
+    font-weight: 600;
     font-size: 1.125rem;
     line-height: 1.375rem;
-    margin-top: 8px;
-  }
-
-  .rowWrapper {
-    display: flex;
-    align-items: center;
-    margin-top: 24px;
-  }
-
-  .infoWrapper:not(:first-child) {
-    margin-left: 24px;
-  }
-
-  .infoWrapper {
-    display: flex;
-    align-items: center;
-
-    .infoWrapperText {
-      margin-left: 8px;
-      color: var(--info);
-      font-size: 0.875rem;
-      line-height: 1.063rem;
-    }
+    text-align: justify;
+    margin-top: 64px;
   }
 }
