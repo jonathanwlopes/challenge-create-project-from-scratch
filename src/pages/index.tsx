@@ -51,7 +51,7 @@ export default function Home({ postsPagination }: HomeProps) {
 
   const handlePagination = () => {
     const fetchData = async () => {
-      await fetch(postsPagination.next_page)
+      await fetch(isPagination)
         .then(response => response.json())
         .then(data => {
           if (data.next_page === null) {
@@ -72,6 +72,7 @@ export default function Home({ postsPagination }: HomeProps) {
           });
 
           setPosts([...posts, ...formattedPost2]);
+          setIsPagination(data.next_page);
         });
     };
 
